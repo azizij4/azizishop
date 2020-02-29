@@ -1,0 +1,29 @@
+{% extends 'AdminLayout.html %}
+<div class="col-12" style="background-color: #0c0c0c;">
+	<center><h2 style="color: #fafafa;">Registered User in AzizShop</h2></center>
+	  
+		<!---<input class="form-control" id="myInput" type="text" placeholder="Search user">-->
+	<table class="table table-bordered">
+		  <thead>
+		    <tr>
+		      <th scope="col" style="color: #fafafa;">ID</th>
+		      <th scope="col" style="color: #fafafa;">Username</th>
+		      <th scope="col" style="color: #fafafa;">Email</th>
+		      <th scope="col" style="color: #fafafa;">Password</th>
+		      <th scope="col" style="color: #fafafa;">Profile</th>
+		    </tr>
+		  </thead>
+		  <tbody id="myTable">
+		    
+		 {% for user in users %} 
+		 	<tr> 	
+		      <th scope="row" style="color: #fafafa;">{{ user.id }}</th>
+		      <td style="color: #fafafa;">{{ user.username }}</td>
+		      <td style="color: #fafafa;">{{ user.email }}</td>
+		      <td style="color: #fafafa;">{{ user.password }}</td>
+		      <td><img class="rounded-circle account-img" id='account-img'src="{{ profile }}"></td>    
+		    </tr>
+		 {% endfor %}   
+		  </tbody>
+		</table>
+	</div>	

@@ -1,0 +1,110 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+  <link rel= "stylesheet" type= "text/css" href= "{{ url_for('static',filename='css/my_shop.css') }}">
+  <link rel="stylesheet" href="{{url_for('static', filename='css/font-awesome-4.7.0/css/font-awesome.min.css') }}">
+	<script src="https://kit.fontawesome.com/b99e675b6e.js"></script>
+   {% if title %}
+        <title>AzizShop | {{ title }}</title>
+    {% else %}
+        <title>TniteShop</title>
+    {% endif %}
+</head>
+<style type="text/css">
+      .card{
+        background-color: black;
+      }
+    </style>
+<body>
+
+<div class="wrapper">
+    <div class="sidebar">
+      <h2>AzizShop</h2>
+      <h4 style="color: #fafafa;">Admin panel</h4>
+        {% if current_user.is_authenticated %}
+             <ul>
+              <li><a href="{{ url_for('home')}}"><i class="fas fa-user"></i>Users</a></li>
+              <li><a href="{{ url_for('home')}}"><i class="fas fa-user"></i>Premium users</a></li>
+              <li><a href="#"><i class="fas fa-shopping-cart"></i>Shops</a></li>
+               <li><a href="#"><i class="fas fa-truck"></i>Shipping</a></li>
+              <li><a href="#"><i class="fas fa-comment"></i>Messages</a></li>
+              <li><a href="#"><i class="fas fa-credit-card"></i>Wallets</a></li>
+              <li><a href="{{url_for('my_shop')}}"><i class="fas fa-shopping-bag"></i>Sponsered Shops</a></li>
+			  <li><a href="{{url_for('my_shop')}}"><i class="fas fa-shopping-bag"></i>Verifierd Shops</a></li>
+            </ul>
+            <a href="{{url_for('logout')}}"><button type="submit" class="btn btn-outline-primary" id="logout_btn">Logout admin panel</button></a> 
+        {% else %}
+            <ul>
+              <li><a href="{{ url_for('home')}}"><i class="fas fa-home"></i>Home</a></li>
+              <li><a href="{{ url_for('home')}}"><i class="fas fa-info"></i>Learn More</a></li>
+            </ul>
+        {% endif %}        
+  </div>
+    <div class="main_content">
+      {% with messages = get_flashed_messages(with_categories=true) %}
+          {% if messages %}
+             {% for category, message in messages %}
+                <div class="alert alert-{{ category }}" role="alert">
+                    <strong>{{ category }}!.....</strong>
+                            {{ message }}
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                </div>
+              {% endfor %}
+         {% endif %}
+      {% endwith %}
+      {% block content %}
+        {% if current_user.is_authenticated %}
+				<div class="col-12" style="background-color: #0c0c0c;">
+				<center><h2 style="color: #fafafa;">Registered User in AzizShop</h2></center>
+				  
+					<!---<input class="form-control" id="myInput" type="text" placeholder="Search user">-->
+				<table class="table table-bordered">
+					  <thead>
+					    <tr>
+					      <th scope="col" style="color: #fafafa;">ID</th>
+					      <th scope="col" style="color: #fafafa;">Username</th>
+					      <th scope="col" style="color: #fafafa;">Email</th>
+					      <th scope="col" style="color: #fafafa;">Password</th>
+					      <th scope="col" style="color: #fafafa;">Profile</th>
+					    </tr>
+					  </thead>
+					  <tbody id="myTable">
+					    
+					 {% for user in users %} 
+					 	<tr> 	
+					      <th scope="row" style="color: #fafafa;">{{ user.id }}</th>
+					      <td style="color: #fafafa;">{{ user.username }}</td>
+					      <td style="color: #fafafa;">{{ user.email }}</td>
+					      <td style="color: #fafafa;">{{ user.password }}</td>
+					      <td><img class="rounded-circle account-img" id='account-img'src="{{ profile }}"></td>    
+					    </tr>
+					 {% endfor %}   
+					  </tbody>
+					</table>
+		     </div>
+		{% else %}
+			<center><h2 style="color: #fafafa;">Unable to view content in admin session</h2></center>
+		{% endif%}	
+      {% endblock %}
+    </div>
+<script>
+$(document).ready(function(){
+  $("#myInput").on("keyup", function() {
+    var value = $(this).val().toLowerCase();
+    $("#myTable tr").filter(function() {
+      $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+    });
+  });
+});
+</script>
+<script type="text/javascript"  href= "{{ url_for('static',filename='js/TniteShop.js') }}"></script>   
+   <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+</body>
+</html>
+

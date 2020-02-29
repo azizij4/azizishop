@@ -1,0 +1,111 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+  <link rel= "stylesheet" type= "text/css" href= "{{ url_for('static',filename='css/to_seller.css') }}">
+  <link rel="stylesheet" href="{{url_for('static', filename='css/font-awesome-4.7.0/css/font-awesome.min.css') }}">
+	<script src="https://kit.fontawesome.com/b99e675b6e.js"></script>
+   {% if title %}
+        <title>AzizShop | {{ title }}</title>
+    {% else %}
+        <title>TniteShop</title>
+    {% endif %}
+</head>
+<style type="text/css">
+      .card{
+        background-color: black;
+      }
+    </style>
+<body>
+
+<div class="wrapper">
+    <div class="sidebar">
+      <h2>AzizShop</h2>
+         <img class="rounded-circle account-img" src="{{url_for('static',filename='Users_profiles/' + product.seller.profile) }}">
+         <center><h4>{{product.seller.username}}</h4></center>
+        <ul>
+            <li><a href="{{ url_for('home')}}"><i class="fas fa-home"></i>Home</a></li>
+            <li><a href="#"><i class="fas fa-address-card"></i>About</a></li>
+            <li><a href="#"><i class="fas fa-phone"></i>Call</a></li>
+            <li><a href="#"><i class="fas fa-comment"></i>Chart</a></li>
+        </ul>
+         <a href="#"><button type="submit" class="btn btn-outline-primary" id="Cart_btn">Follow</button></a>
+
+        <div class="social_media">
+          <a href="#"><i class="fab fa-facebook-f"></i></a>
+          <a href="#"><i class="fab fa-twitter"></i></a>
+          <a href="#"><i class="fab fa-instagram"></i></a>
+      </div>
+    </div>
+    <div class="main_content">
+    <nav class="navbar navbar-expand-lg  navbar-light bg-faded"> 
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+     </button>
+
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav mx-auto">
+        <form class="form-inline">
+          <div class="input-group">                    
+         <input type="text" class="form-control" placeholder="Search products" id="Searchbox">
+         <div class="input-group-append">
+         <button type="button" class="btn btn-secondary" id="Searchbtn"><i class="fa fa-search"></i></button>
+        </div>
+        </div>
+        </form>
+       </ul>
+       </div>
+      </nav>
+      <div class="row">
+      	<div class="col-12 col-sm-6 col-md-4 col-lg-4 col-xl-3 mb-4">
+	<div class="card h-100">
+	        <div class="card-img-top"
+	             style="background: url('{{ url_for('static',filename='products_images/' + product.product_image_name) }}'); background-repeat:no-repeat; background-size: cover; height:200px;width:100% ">
+	             </div>
+	    <div class="card-body">
+	        <h5 class="card-title">
+	            {{ product.product_name }}
+	             </h5>
+	             <h6 style="color: gray">Max Order:{{ product.max_order}}</h6>
+	              <h6 style="color: gray">One piece:{{ product.one_piece }} Tsh</h6>
+	              <h6 style="color: gray">Free shipping
+	                <ul>
+	                  <li>{{ product.free_shipping1 }}</li>
+	                  <li>{{ product.free_shipping2 }}</li>
+	                </ul>
+	              </h6>
+	          		</br>
+	              <div class="description">
+	                  <small class="text-muted">{{ product.product_description }}</small>
+	    			</div>
+	        <a href="{{ url_for('carts')}}"><button type="submit" class="btn btn-outline-primary" id="Cart_btn"> Cart
+           </button></a>
+	    </div>
+	    <div class="card-footer">
+	        <small class="text-muted"></small>
+	    </div>
+	</div>
+	</div>
+  </div>
+	</div>
+	</div>
+     
+</div>
+</div>
+<nav class="navbar sticky-bottom navbar-dark bg-dark">
+  <a class="navbar-brand" href="#">Fixed bottom</a>
+</nav>
+<script type="text/javascript"  href= "{{ url_for('static',filename='js/TniteShop.js') }}"></script>   
+   <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+</body>
+</html>
+
+
+
+
+
