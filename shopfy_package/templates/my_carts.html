@@ -78,15 +78,15 @@
        </div>
       </nav>
      <div class="row">
-      {% for products in product.items %}
+      {% for carts in cart %}
                 <div class="col-12 col-sm-6 col-md-4 col-lg-4 col-xl-3 mb-4">
                     <div class="card h-100">
                             <div class="card-img-top"
-                                 style="background: url('{{ url_for('static',filename='products_images/' + products.product_image_name) }}'); background-repeat:no-repeat; background-size: cover; height:200px;width:100% ">
+                                 style="background: url('{{ url_for('static',filename='products_images/' ) }}'); background-repeat:no-repeat; background-size: cover; height:200px;width:100% ">
                                  </div>
                         <div class="card-body">
                             <h5 class="card-title" style="color: blue;">
-                                {{ products.product_name }}
+                              
                                  </h5>
                                  <small class="text-muted" style="color:green;">Rating:</small>
                                  <span class="fa fa-star checked" style="color: orange;"></span>
@@ -95,19 +95,19 @@
                                  <span class="fa fa-star" style="color: white;"></span>
                                  <span class="fa fa-star" style="color: white;"></span>
                                  <small class="text-muted" style="color:green;">34.6k</small>
-                                 <h6 style="color: gray">Max Order:{{ products.max_order}}</h6>
-                                  <h6 style="color: gray">One piece:{{ products.one_piece }} Tsh</h6>
+                                 <h6 style="color: gray">Max Order:</h6>
+                                  <h6 style="color: gray">One piece: Tsh</h6>
                                   <h6 style="color: gray">Free shipping <i class="fa fa-truck" aria-hidden="true"></i>
                                     <ul>
-                                      <li><i class="fa fa-map-marker" aria-hidden="true"></i>{{ products.free_shipping1 }}</li>
-                                      <li><i class="fa fa-map-marker" aria-hidden="true"></i>{{ products.free_shipping2 }}</li>
+                                      <li><i class="fa fa-map-marker" aria-hidden="true"></i></li>
+                                      <li><i class="fa fa-map-marker" aria-hidden="true"></i></li>
                                     </ul>
                                   </h6>
-                             <form action="{{url_for('Delete_product',username=current_user.username,Products_id=products.id)}}" method="POST">       
+                             <form action="" method="POST">       
                               <button class="btn btn-outline-primary" type="submit" id="buy_btn" style="float: left;">Delete</button>
                              </form>
                              &nbsp;&nbsp;
-                             <a href="{{url_for('Update_product',username=current_user.username,Products_id=products.id)}}"><button type="submit" class="btn btn-outline-primary" id="cart_btn">
+                             <a href=""><button type="submit" class="btn btn-outline-primary" id="cart_btn">
                              Update</button></a>
                         </div>
                         <div class="card-footer">

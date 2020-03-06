@@ -79,5 +79,34 @@ class ProductForm(FlaskForm):
 	free_shipping1 = StringField('free shiping1',validators=[DataRequired()])
 	free_shipping2 = StringField('free_shipping2',validators=[DataRequired()])
 	product_image = FileField('Select product picture', validators=[FileAllowed(['png', 'jpg', 'jpeg', 'gif'])])
-	product_description = TextAreaField('Write product product description',validators=[DataRequired()])
+	product_description = TextAreaField('Write product description',validators=[DataRequired()])
 	submit = SubmitField('Upload product')
+
+
+
+class Update_productForm(FlaskForm):
+	product_name = StringField('product name',validators=[DataRequired()])
+	product_category = SelectField('product product category',choices = [
+						('1','All department'),
+		                	('2','Art and Craft'),
+		                		('3','Automotive'),
+                       				 ('4','Baby'),
+                        				('5','Beauty and personal Care'),
+                        					('6','Book'),
+                       							 ('7','Computer'),
+                       								 ('8','Electronics'),
+                       									 ('9','Home applience'),
+                       										 ('10','Digital Music'),
+                       											 ('11',"Men's fashion"),
+                        											('12',"Women Fashion"),
+                        												('13','Home and kitchen'),
+                      														  ('14',"Boy's Fashion"),
+                       															 ('15',"Girls Fashion"),
+                       																 ('16',"Sports")],validators=[DataRequired()])
+	max_order = IntegerField('Maximum order',validators=[DataRequired()])
+	one_piece = IntegerField('One piece',validators=[DataRequired()])
+	free_shipping1 = StringField('free shiping1',validators=[DataRequired()])
+	free_shipping2 = StringField('free_shipping2',validators=[DataRequired()])
+	product_image = FileField('Select product picture', validators=[FileAllowed(['png', 'jpg', 'jpeg', 'gif'])])
+	product_description = TextAreaField('Write product  description',validators=[DataRequired()])
+	submit = SubmitField('Update product')
